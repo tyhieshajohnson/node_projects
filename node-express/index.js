@@ -4,10 +4,16 @@ config();
 
 const app = express();
 
+let languages = [
+    {id: 1, name: 'HTML'},
+    {id: 2, name: 'Javascript'},
+    {id: 3, name: 'CSS'}
+];
+
 let PORT = process.env.PORT || 8001;
 
 app.get('/',(req, res) =>{
-    res.send('<h1>Welcome!</h1>');
+    res.send(languages);
 })
 
 app.listen(PORT, ()=> {

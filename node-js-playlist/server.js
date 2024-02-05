@@ -6,8 +6,16 @@ const PORT = 7896;
 //always takes in callback function 
 // var server = http.createServer(function(req, res http Response)) 
 var server = http.createServer((req, res)=> {
-    res.write('Hello Tyhiesha Johnson');
-    res.end();
+    // res.write('Hello Tyhiesha Johnson');
+    // res.end();
+    if (req.url === '/'){
+        res.write('Hello Tyhiesha Johnson');
+        res.end();
+    }
+    if (req.url === '/api') {
+        res.write('JSON.stringify([1, 2, 3, 4])');
+        res.end();
+    }
 });
 // send as a request and backend is a response
 

@@ -33,10 +33,30 @@ app.get('/users/:id', (req, res) => {
 });
 
 // 2. Add new people into the array
-app.post('/users', (req, res) => {
-    
+app.post('/users/add', (req, res) => {
+    let user = {
+        id: users[users.length - 1].id+1,
+        name:  req.body.name,
+        age: req.body.age
+    }
+    users.push(user);
+    res.send(user);
 });
 
+app.patch('/users/edit/:id', (req, res)=> {
+    // looking for a matching object with id
+    let user = users.find(friend => friend.id === +req.params.id);
+    //updating name value with user's parsed data
+    user.name = req.body.name;
+    res.send(user);
+
+});
+
+app.delete('/users/delete/:id', (req, res) => {
+    let index = users.findIndex(friend => friend.id === +req.params.id);
+    users.splice(index, 1);
+    res.send(users);
+});
 
 // App.Listen host my server
 app.listen( PORT, () => {
